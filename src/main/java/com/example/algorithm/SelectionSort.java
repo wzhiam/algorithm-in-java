@@ -25,6 +25,7 @@ public class SelectionSort {
                 }
             }
 
+            // 将最小值与当前值交换位置, 如果最小值位置与当前位置一样就不用交换
             if (index != i) {
                 temp = array[i];
                 array[i] = array[index];

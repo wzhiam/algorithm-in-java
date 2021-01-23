@@ -19,8 +19,8 @@ public class BubbleSort {
      * 简单实现
      */
     public static void sort1(int[] array) {
-        Assert.checkNull(array);
         System.out.println(">>>>>>>>>>> sort1() begin:");
+        Assert.checkNull(array);
 
         int temp;
         for (int i = 0; i < array.length - 1; i++) {
@@ -40,8 +40,8 @@ public class BubbleSort {
      * 结果: 从输出结果可以看出来方法二比方法一少遍历3次
      */
     public static void sort2(int[] array) {
-        Assert.checkNull(array);
         System.out.println(">>>>>>>>>>> sort2() begin:");
+        Assert.checkNull(array);
 
         int temp;
         boolean isChange;
