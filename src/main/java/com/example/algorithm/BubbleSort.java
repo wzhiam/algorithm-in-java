@@ -19,11 +19,14 @@ public class BubbleSort {
      * 简单实现
      */
     public static void sort1(int[] array) {
+        Assert.checkNull(array);
         System.out.println(">>>>>>>>>>> sort1() begin:");
+
+        int temp;
         for (int i = 0; i < array.length - 1; i++) {
             for (int j = array.length - 1; j > i; j--) {
                 if (array[j - 1] > array[j]) {
-                    int temp = array[j - 1];
+                    temp = array[j - 1];
                     array[j - 1] = array[j];
                     array[j] = temp;
                 }
@@ -37,22 +40,25 @@ public class BubbleSort {
      * 结果: 从输出结果可以看出来方法二比方法一少遍历3次
      */
     public static void sort2(int[] array) {
+        Assert.checkNull(array);
         System.out.println(">>>>>>>>>>> sort2() begin:");
 
+        int temp;
+        boolean isChange;
         for (int i = 0; i < array.length - 1; i++) {
-            boolean flag = true;
+            isChange = true;
             for (int j = array.length - 1; j > i; j--) {
                 if (array[j - 1] > array[j]) {
-                    int temp = array[j - 1];
+                    temp = array[j - 1];
                     array[j - 1] = array[j];
                     array[j] = temp;
 
-                    flag = false;
+                    isChange = false;
                 }
             }
 
             // 如果这一轮没有数据变换位置的话, 说明已经全部排序好了
-            if (flag) {
+            if (isChange) {
                 break;
             }
             System.out.println("[" + i + "] " + Arrays.toString(array));
