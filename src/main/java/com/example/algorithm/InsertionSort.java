@@ -13,7 +13,6 @@ public class InsertionSort {
     }
 
     public static void sort(int[] array) {
-        System.out.println(">>>>>>>>>>> sort() begin:");
         Assert.checkNull(array);
 
         int preIndex;

@@ -3,7 +3,7 @@ package com.example.algorithm;
 import java.util.Arrays;
 
 /**
- * 希尔排序
+ * 希尔排序, 是对插入排序的改进
  */
 public class ShellSort {
 
