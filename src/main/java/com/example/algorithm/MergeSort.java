@@ -76,24 +76,23 @@ public class MergeSort {
 
     /**
      * MergePass方法负责将数组中的相邻的有k个元素的字序列进行归并
+     *
+     * low: i 从 0 到 2, 4, 6, 8... 不断扩大归并的子序列大小
+     * high: i + k - 1 和 i 的差距从 0, 1, 3, 7,
      */
-    private static void MergePass(int[] arr, int k, int n) {
+    private static void MergePass(int[] arr, int k, int len) {
         int i = 0;
         //从前往后,将2个长度为k的子序列合并为1个
-        while (i < n - 2 * k + 1) {
-            System.out.println("k=" + k + ", n=" + n + "     |     i=" + i + ", i+k-1=" + (i + k - 1) + ", i + 2*k - 1=" + (i + 2 * k - 1) + "     |     i += 2 * k=" + (i + 2 * k) + ",  n - 2 * k + 1=" + (n - 2 * k + 1));
+        while (i < len - 2 * k + 1) {
+            System.out.println("k=" + k + ", n=" + len + "     |     i=" + i + ", i+k-1=" + (i + k - 1) + ", i + 2*k - 1=" + (i + 2 * k - 1) + "     |     i += 2 * k=" + (i + 2 * k) + ",  n - 2 * k + 1=" + (len - 2 * k + 1));
             merge(arr, i, i + k - 1, i + 2 * k - 1);
             i += 2 * k;
         }
-        /*
-        [6, 2, 4, 7, 1, 8, 3, 9, 5]
-         0  1  2  3  4  5  6  7  8
-         */
 
         //这段代码保证了，将那些“落单的”长度不足两两merge的部分和前面merge起来。
-        if (i < n - k) {
-            System.out.println("落单: k=" + k + ", n=" + n + "     |     i=" + i + ", i+k-1=" + (i + k - 1) + ", n-1=" + (n - 1));
-            merge(arr, i, i + k - 1, n - 1);
+        if (i < len - k) {
+            System.out.println("落单: k=" + k + ", n=" + len + "     |     i=" + i + ", i+k-1=" + (i + k - 1) + ", n-1=" + (len - 1));
+            merge(arr, i, i + k - 1, len - 1);
         }
 
     }
