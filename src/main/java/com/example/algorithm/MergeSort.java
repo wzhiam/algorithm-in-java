@@ -8,9 +8,15 @@ import java.util.Arrays;
 public class MergeSort {
 
     public static void main(String[] args) {
+        // 递归实现
         int[] array = {6, 2, 4, 7, 1, 8, 3, 9, 5};
         mergeSort(array, 0, array.length - 1);
-        System.out.println(Arrays.toString(array));
+        System.out.println(">>>>>>>>>> 递归: " + Arrays.toString(array));
+
+        // 优化的方法
+        int[] array2 = {6, 2, 4, 7, 1, 8, 3, 9, 5};
+        MergeSort2(array2);
+        System.out.println(">>>>>>>>>> 迭代优化: " + Arrays.toString(array2));
     }
 
     /**
@@ -57,15 +63,39 @@ public class MergeSort {
     /**
      * 为了优化归并排序，我们可以使用迭代代替递归
      */
-    public static void mergeSort2(int[] array, int low, int high) {
-        if (low == high) {
-            return;
+    public static void MergeSort2(int[] arr) {
+        //使用非递归的方式来实现归并排序
+        int len = arr.length;
+        int k = 1;
+
+        while (k < len) {
+            MergePass(arr, k, len);
+            k *= 2;
+        }
+    }
+
+    /**
+     * MergePass方法负责将数组中的相邻的有k个元素的字序列进行归并
+     */
+    private static void MergePass(int[] arr, int k, int n) {
+        int i = 0;
+        //从前往后,将2个长度为k的子序列合并为1个
+        while (i < n - 2 * k + 1) {
+            System.out.println("k=" + k + ", n=" + n + "     |     i=" + i + ", i+k-1=" + (i + k - 1) + ", i + 2*k - 1=" + (i + 2 * k - 1) + "     |     i += 2 * k=" + (i + 2 * k) + ",  n - 2 * k + 1=" + (n - 2 * k + 1));
+            merge(arr, i, i + k - 1, i + 2 * k - 1);
+            i += 2 * k;
+        }
+        /*
+        [6, 2, 4, 7, 1, 8, 3, 9, 5]
+         0  1  2  3  4  5  6  7  8
+         */
+
+        //这段代码保证了，将那些“落单的”长度不足两两merge的部分和前面merge起来。
+        if (i < n - k) {
+            System.out.println("落单: k=" + k + ", n=" + n + "     |     i=" + i + ", i+k-1=" + (i + k - 1) + ", n-1=" + (n - 1));
+            merge(arr, i, i + k - 1, n - 1);
         }
 
-        int mid = (low + high) / 2;
-        while (low < high) {
-
-        }
     }
 
 }
